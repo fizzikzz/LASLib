@@ -7,6 +7,7 @@ namespace LASLib {
     public class LASDataset {
         public string SectionName { get; private set; }
         public ParameterSection? ParameterSection { get; set; }
+        public OtherSection? OtherSection { get; set; }
         public DefinitionSection DefinitionSection { get; set; }
         public List<DataSection> DataSections { get; set; } = new();
 

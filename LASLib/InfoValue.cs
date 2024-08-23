@@ -51,18 +51,20 @@
 
             int reverseIdx = line.Length - 1;
             bool lastColonFound = false;
+            bool inFormat = false;
             while (reverseIdx > idx && !lastColonFound)
             {
-                if (line[reverseIdx] == ':')
+                if (line[reverseIdx] == ':' && !inFormat)
                     lastColonFound = true;
                 else if (line[reverseIdx] == '}' || line[reverseIdx] == ']')
                 {
-                    //do nothing
+                    inFormat = true;
                 }
                 else if (line[reverseIdx] == '{' || line[reverseIdx] == '[')
                 {
-                    result.Format = result.Description.Trim();
+                    result.Format = result.Description.Trim().Replace("DD", "dd").Replace("YY", "yy").Replace("hh", "HH");
                     result.Description = string.Empty;
+                    inFormat = false;
                 }
                 else if (line[reverseIdx] == '|')
                 {

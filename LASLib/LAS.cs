@@ -53,7 +53,8 @@
                 {
                     if (currentSection is not null) currentSection.CheckIsValid();
                     currentSection = null!;
-                    if (!line.Contains('_'))
+                    var lineSplit = line.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+                    if (!lineSplit[0].Contains('_'))
                     {
                         if (line.StartsWith("~V", StringComparison.OrdinalIgnoreCase))
                         {
@@ -64,6 +65,11 @@
                         {
                             result.WellInformation = new();
                             currentSection = result.WellInformation;
+                        }
+                        else if (line.StartsWith("~O", StringComparison.OrdinalIgnoreCase))
+                        {
+                            result.LASDatasets[0].OtherSection = new();
+                            currentSection = result.LASDatasets[0].OtherSection;
                         }
                         else if (line.StartsWith("~C", StringComparison.OrdinalIgnoreCase))
                         {

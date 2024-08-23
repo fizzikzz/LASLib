@@ -5,6 +5,7 @@
         public static bool IsMd(this string value)
         {
             return
+                value.Equals("HOLE", StringComparison.OrdinalIgnoreCase) ||
                 value.Equals("DEPT", StringComparison.OrdinalIgnoreCase) ||
                 value.Equals("DEPTH", StringComparison.OrdinalIgnoreCase);
         }
