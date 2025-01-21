@@ -4,6 +4,8 @@
     <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64</Platforms>
+	  <DebugType>embedded</DebugType>
   </PropertyGroup>
 
 </Project>
