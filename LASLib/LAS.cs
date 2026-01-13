@@ -27,6 +27,8 @@
         }
         public static LAS ParseFromStream(Stream stream)
         {
+            bool sectionFound = false;
+
             var result = new LAS();
             using var sr = new StreamReader(stream);
 
@@ -51,6 +53,7 @@
                 }
                 else if (line[0] == '~')
                 {
+                    sectionFound = true;
                     if (currentSection is not null) currentSection.CheckIsValid();
                     currentSection = null!;
                     var lineSplit = line.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
@@ -174,6 +177,11 @@
                         Console.WriteLine(ex);
                     }
                 }
+            }
+
+            if (!sectionFound)
+            {
+                result.Errors.Add(new ArgumentException("No sections or lines starting with \"~\" detected."));
             }
 
             return result;

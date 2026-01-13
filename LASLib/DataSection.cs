@@ -86,7 +86,7 @@ namespace LASLib
                         currentItem += line[i];
                         inQuotes = !inQuotes;
                     }
-                    else if (line[i].Equals(_delimiter) && !inQuotes)
+                    else if (line[i].Equals(_delimiter) && !inQuotes && !string.IsNullOrWhiteSpace(currentItem))
                     {
                         result.Add(currentItem.Trim());
                         currentItem = string.Empty;
